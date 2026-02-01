@@ -1,95 +1,84 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Selamat Bangun Tidur</title>
-<style>
-    body {
-        margin: 0;
-        height: 100vh;
-        background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Segoe UI', sans-serif;
-    }
-
-    .box {
-        text-align: center;
-        color: #ffffff;
-        background: rgba(0,0,0,0.25); /* 🔥 biar teks kebaca */
-        padding: 30px 40px;
-        border-radius: 20px;
-        animation: fadeIn 2s ease;
-        z-index: 2;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    h1 {
-        font-size: 36px;
-        margin-bottom: 10px;
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-    }
-
-    p {
-        font-size: 18px;
-        margin-bottom: 25px;
-        text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-    }
-
-    a {
-        padding: 12px 25px;
-        background: white;
-        color: #ee9ca7;
-        text-decoration: none;
-        border-radius: 30px;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    a:hover {
-        transform: scale(1.1);
-    }
-
-    .flower {
-        position: absolute;
-        top: -50px;
-        font-size: 24px;
-        animation: fall linear infinite;
-    }
-
-    @keyframes fall {
-        to {
-            transform: translateY(110vh) rotate(360deg);
+    <meta charset="UTF-8">
+    <title>Selamat 🎉</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
+        .box {
+            text-align: center;
+            background: #020617;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+        }
+        input {
+            margin-top: 15px;
+            padding: 8px;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            margin-top: 10px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #22c55e;
+            color: #000;
+        }
+        .msg {
+            margin-top: 10px;
+            color: #f87171;
+        }
+    </style>
 </head>
 <body>
 
 <div class="box">
-    <h1>Selamat Bangun Tidur di hari Minggu 01/02/2026 ☀️</h1>
-    <p>Semoga hari ini lembut seperti senyummu</p>
-    <a href="web1.html">Lanjutkan BY,Ramdani 💗</a>
+    <h2 id="typing"></h2>
+
+    <input type="text" id="jawaban" placeholder="Jawab di sini...">
+    <button onclick="cekJawaban()">Kirim</button>
+
+    <div class="msg" id="msg"></div>
 </div>
 
 <script>
-    for (let i = 0; i < 25; i++) {
-        let flower = document.createElement("div");
-        flower.className = "flower";
-        flower.innerHTML = "🌸";
-        flower.style.left = Math.random() * 100 + "vw";
-        flower.style.animationDuration = (5 + Math.random() * 5) + "s";
-        document.body.appendChild(flower);
+    // Typing effect
+    const text = "Selamat yaa 🎉 udah mandi belum?";
+    let i = 0;
+    const typingEl = document.getElementById("typing");
+
+    function typing() {
+        if (i < text.length) {
+            typingEl.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, 70);
+        }
+    }
+    typing();
+
+    // Cek jawaban
+    function cekJawaban() {
+        const jawaban = document.getElementById("jawaban").value.toLowerCase().trim();
+
+        if (jawaban === "udah") {
+            window.location.href = "web1.html";
+        } else {
+            document.getElementById("msg").innerText = "😅 mandi dulu dong...";
+        }
     }
 </script>
 
 </body>
 </html>
-
